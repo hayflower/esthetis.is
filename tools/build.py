@@ -52,12 +52,12 @@ def main(key, draft):
         if 'class="pending"' in source and not draft:
             sys.exit(f"{html} still has pending text; fill it in or build with --draft")
 
-        page = fill(source, dict(values, SIG="{{SIG}}"))
+        page = fill(source, dict(values, SIG="{{SIG}}", HASH="{{HASH}}"))
         plain = render(page, f"{url}  ·  Signed with {values['FP_SHORT']}")
         (SITE / txt).write_text(plain)
 
         if draft:
-            sig = "(draft: not signed)"
+            sig, digest = "(draft: not signed)", "SHA512"
         else:
             signed = gpg("--local-user", fp, "--digest-algo", "SHA512",
                          "--clearsign", data=plain)
@@ -65,8 +65,9 @@ def main(key, draft):
             gpg("--verify", str(SITE / f"{txt}.asc"))
             sig = re.search(r"-----BEGIN PGP SIGNATURE-----\n\n(.*?)\n"
                             r"-----END PGP SIGNATURE-----", signed, re.S).group(1)
+            digest = re.search(r"^Hash: (\S+)", signed, re.M).group(1)
 
-        out = page.replace("{{SIG}}", sig)
+        out = page.replace("{{SIG}}", sig).replace("{{HASH}}", digest)
         assert "{{" not in out, f"unfilled placeholder in {html}"
         (SITE / html).write_text(out)
         print(f"{html}: {'draft' if draft else 'signed by ' + values['FP_SPACED']}")
