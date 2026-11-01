@@ -73,14 +73,14 @@ That is the same company that fronts this site, so Cloudflare is in a
 position to see both your visit and your message. I would rather write
 that down than let you assume the two paths are separate.
 
+  forwards to Cloudflare Email Routing
+
 If that matters for what you want to discuss, encrypt it. PGP keeps the
 contents from the forwarder and the mailbox, though not from me once I
 decrypt it. Signal avoids the mail path altogether.
 
 I keep correspondence for as long as an engagement needs it and a while
 afterwards for my own records. Ask me to delete yours and I will.
-
-  forwards to Cloudflare Email Routing
 
 06  YOUR CHOICES
 ------------------------------------------------------------------------
@@ -106,7 +106,7 @@ quietly swapping the wording.
 
   contact     contact@esthetis.is
   signal      @esth.01
-  responsible Esthetis
+  responsible Blaise Bellew (Esthetis)
 
 ------------------------------------------------------------------------
 https://esthetis.is/privacy  ·  Signed with 897D 3FF8 ... EE1B AE66
