@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Esthetis: independent infrastructure consulting</title>
+  <meta name="description" content="Independent infrastructure consulting for small teams who would rather run their own systems than rent them. Deployment, monitoring, security review and the front-ends on top. Decentralized systems are a specialty, mostly Ethereum and Solana.">
+  <link rel="canonical" href="https://esthetis.is/">
+  <meta property="og:title" content="Esthetis">
+  <meta property="og:description" content="Independent infrastructure consulting, for teams who would rather run their own systems than rent them.">
+  <meta property="og:url" content="https://esthetis.is/">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0b0c0e">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preload" href="fonts/anonymous-pro-400.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css?v=16">
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Esthetis",
+  "url": "https://esthetis.is/",
+  "description": "Independent infrastructure consulting, for teams who would rather run their own systems than rent them.",
+  "serviceType": "Infrastructure consulting",
+  "areaServed": "Worldwide",
+  "knowsAbout": [
+    "Infrastructure engineering",
+    "Self-hosting",
+    "Deployment and monitoring",
+    "Security review",
+    "Front-end engineering",
+    "Node operation",
+    "Self-custody",
+    "Ethereum",
+    "Solana",
+    "Monero"
+  ]
+}
+  </script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="page">
+
+  <nav class="index" aria-label="Document index">
+    <p class="index-h">Contents</p>
+    <ol>
+      <li><a href="#who">Who</a></li>
+      <li><a href="#what">What</a></li>
+      <li><a href="#process">Process</a></li>
+      <li><a href="#terms">Terms</a></li>
+      <li><a href="#records">Records</a></li>
+      <li><a href="#fit">Fit</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </nav>
+
+  <div class="doc">
+
+    <p class="armor" aria-hidden="true">-----BEGIN PGP SIGNED MESSAGE-----</p>
+    <p class="armor-meta" aria-hidden="true">Hash: {{HASH}}</p>
+
+    <header class="head">
+      <h1>Esthetis</h1>
+      <p class="scope">Independent infrastructure consulting, for teams who would rather run their own systems than rent them.</p>
+      <p class="avail">Remote · Small teams · <span class="rev">Revised <time datetime="2026-11-01">2026-11-01</time></span></p>
+    </header>
+
+    <section class="ident" aria-label="Key fingerprint">
+      <div class="ident-row">
+      <pre class="art" aria-hidden="true">{{ART}}</pre>
+      <div class="ident-meta">
+        <p class="fp"><span class="k"><!--email_off-->Esthetis &lt;contact@esthetis.is&gt;<!--/email_off--></span><br>
+          <span class="v">{{FP_SPLIT}}</span></p>
+      </div>
+      </div>
+      <p class="verify">Check it yourself:</p>
+      <p class="cmd"><code>curl -s https://esthetis.is/esthetis.asc | gpg --show-keys</code></p>
+      <p class="verify">Key replaced <time datetime="2026-11-01">2026-11-01</time>. The earlier key, <span class="v">4145 B7B3 … DB6B 691F</span>, is retired; don't encrypt to it.</p>
+    </section>
+
+    <main id="main">
+
+      <section id="who" aria-labelledby="who-h">
+        <h2 id="who-h">Who</h2>
+        <p>I'm an independent infrastructure consultant. I build and review the systems small teams run on, along with the deployment and security work that keeps them running.</p>
+        <p>Usually someone wants to run their own thing rather than rent it. Their own servers, their own keys. I help them get there, then get out of the way.</p>
+        <p>Most of the people who hire me are small: a founder, or a team of two or three with nobody to spare for this. Often they could do it themselves given a spare month.</p>
+        <p>A good share of the work has been on decentralized systems, where node operation and key management make ordinary infrastructure mistakes expensive. That's a specialty rather than the whole practice, and it has its own entry below.</p>
+        <p>There's one person here. You talk to me rather than an account manager, and you don't get handed off to a team once the contract is signed. You get a written scope up front and work you can read line by line.</p>
+      </section>
+
+      <section id="what" aria-labelledby="what-h">
+        <h2 id="what-h">What</h2>
+
+        <article class="svc">
+          <h3>infrastructure/</h3>
+          <p>Servers, networks and the deployment around them. Self-hosted where that makes sense, and boring wherever it can be. I'll push you away from dependencies you can't leave, including me.</p>
+          <dl class="spec">
+            <div class="row">
+              <dt>covers</dt>
+              <dd>Linux hosts and containers. Deployment and configuration that can be rebuilt from the repository. Monitoring, alerting and backups that have actually been restored. Private networking and tunnelled access in place of open ports. Getting off hosted providers you would rather not depend on.</dd>
+            </div>
+            <div class="row">
+              <dt>you get</dt>
+              <dd>Running infrastructure with runbooks for operating it, plus an architecture document you can hand to whoever comes after me.</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="svc">
+          <h3>security/</h3>
+          <p>I read your code and your infrastructure and tell you what's wrong with it. Threat model first, so the review is about your actual adversary and not a checklist.</p>
+          <dl class="spec">
+            <div class="row">
+              <dt>covers</dt>
+              <dd>Web application review. Deployment and infrastructure configuration. Dependencies and supply chain. Key and secret handling. Operational security for teams too small to have anyone assigned to it.</dd>
+            </div>
+            <div class="row">
+              <dt>you get</dt>
+              <dd>A written report with reproduction steps and fixes, ranked by what an attacker would reach for first. Not a severity spreadsheet. One re-check after you've fixed things is part of the job, not a second engagement.</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="svc">
+          <h3>design/</h3>
+          <p>Interfaces, mostly for things that sit on top of a node or an API, which is where most web front-ends come apart. I don't have a framework to defend, and if it can be a static page it stays a static page.</p>
+          <dl class="spec">
+            <div class="row">
+              <dt>covers</dt>
+              <dd>Dashboards over operational or indexer data. Request and transaction states, including every way they fail. Key handling in the browser. Design systems and accessibility. Getting it to load fast on a bad connection. Wallet connection flows, usually Ethereum or Solana.</dd>
+            </div>
+            <div class="row">
+              <dt>you get</dt>
+              <dd>The running front-end and its source, with written notes on why it's built the way it is.</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article class="svc">
+          <h3>chains/</h3>
+          <p>The specialty. A blockchain node is infrastructure with less room for error, since a node that falls out of sync or a key handled carelessly costs more than downtime. I'll push you toward self-custody and away from anything that needs a trusted middleman.</p>
+          <dl class="spec">
+            <div class="row">
+              <dt>covers</dt>
+              <dd>Node deployment and monitoring. RPC and indexing strategy. Contract integration and ABI handling. Signing and key management. Most of that has been Ethereum and Solana, with Monero where the privacy properties are the point, though the node and key problems look much the same wherever you are.</dd>
+            </div>
+            <div class="row">
+              <dt>you get</dt>
+              <dd>Nodes and indexers run under the same runbooks and monitoring as the rest of your infrastructure, and integration code you can read line by line.</dd>
+            </div>
+          </dl>
+        </article>
+      </section>
+
+      <section id="process" aria-labelledby="process-h">
+        <h2 id="process-h">Process</h2>
+        <ol class="steps">
+          <li>
+            <h3>Mail</h3>
+            <p>Tell me what you're building and what's worrying you. A paragraph is enough to start.</p>
+          </li>
+          <li>
+            <h3>Call</h3>
+            <p>Thirty minutes, no charge. We work out whether I'm the right person for it. Sometimes I'm not, and I'll tell you so and point you at someone better.</p>
+          </li>
+          <li>
+            <h3>Scope</h3>
+            <p>I write down what I'll do and what it costs, with a date attached. You approve that before any work starts, and if the scope changes later it changes in writing.</p>
+          </li>
+          <li>
+            <h3>Work</h3>
+            <p>Progress arrives in writing as it happens. No standing status meetings unless you want them.</p>
+          </li>
+          <li>
+            <h3>Handover</h3>
+            <p>Everything documented, in files you keep. I stay reachable afterwards for questions about what I built.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section id="terms" aria-labelledby="terms-h">
+        <h2 id="terms-h">Terms</h2>
+        <dl class="spec wide">
+          <div class="row">
+            <dt>rates</dt>
+            <dd>On request. You get a fixed price with the written scope, before
+              anything starts.</dd>
+          </div>
+          <div class="row">
+            <dt>shape</dt>
+            <dd>Fixed scope and fixed price where the work can honestly be scoped. Day rate where it genuinely can't, with a cap agreed up front. I don't bill retainers for months I'm not working.</dd>
+          </div>
+          <div class="row">
+            <dt>lock-in</dt>
+            <dd>Everything I build is documented well enough that you could replace me. Depending on one freelancer indefinitely is a bad position for you to be in, and I'd rather you weren't in it.</dd>
+          </div>
+          <div class="row">
+            <dt>working</dt>
+            <dd>Remote and asynchronous by default. I write things down rather than schedule calls about them.</dd>
+          </div>
+          <div class="row">
+            <dt>nda</dt>
+            <dd>I'll sign yours. I don't ask you to sign mine.</dd>
+          </div>
+          <div class="row">
+            <dt>privacy</dt>
+            <dd>Findings from a review are yours. I don't publish client work and I won't be listing you on this site.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="records" aria-labelledby="records-h">
+        <h2 id="records-h">Records</h2>
+        <p>The site collects nothing about you, and I keep as little as the work allows. Here is what that means in practice.</p>
+        <dl class="spec wide">
+          <div class="row">
+            <dt>collected</dt>
+            <dd>Whatever you choose to put in a message, and nothing beyond it. There is no intake form and no questionnaire.</dd>
+          </div>
+          <div class="row">
+            <dt>credentials</dt>
+            <dd>Scoped and short-lived, or read-only where read-only is enough. I won't ask for a password that outlives the work.</dd>
+          </div>
+          <div class="row">
+            <dt>retained</dt>
+            <dd>Correspondence for as long as the engagement needs it. Your code and your credentials, never past handover.</dd>
+          </div>
+          <div class="row">
+            <dt>handover</dt>
+            <dd>Findings and artifacts go to a repository you control. Whatever sat on my side is destroyed, and I tell you when that is done.</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section id="fit" aria-labelledby="fit-h">
+        <h2 id="fit-h">Fit</h2>
+        <div class="fit-cols">
+          <div class="fit-col">
+            <h3>Worth mailing about</h3>
+            <ul class="fit-list good">
+              <li>You want to run your own infrastructure and need help getting there.</li>
+              <li>Something is live and you want it reviewed before more people depend on it.</li>
+              <li>You need a front-end built by someone who understands what's underneath it.</li>
+              <li>You inherited a system nobody documented and need to know what it does.</li>
+            </ul>
+          </div>
+          <div class="fit-col">
+            <h3>Not for me</h3>
+            <ul class="fit-list bad">
+              <li>Token launches, and anything whose real product is the token.</li>
+              <li>Work where I'd hold your keys or your funds.</li>
+              <li>"Make it decentralized" with no reason behind it.</li>
+              <li>Anything I'd have to lie about.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" aria-labelledby="contact-h">
+        <h2 id="contact-h">Contact</h2>
+        <p>Mail is the best way to reach me, encrypted if you can.</p>
+        <p class="hint">Useful in a first message: what you're building, and what's worrying you about it. If there's a deadline, say so.</p>
+        <dl class="spec channels">
+          <div class="row">
+            <dt>mail</dt>
+            <dd>
+              <!-- email_off keeps Cloudflare from rewriting the address; leave it. -->
+              <!--email_off--><a href="mailto:contact@esthetis.is">contact@esthetis.is</a><!--/email_off-->
+              <button class="copy" type="button" data-copy="contact@esthetis.is">copy</button>
+            </dd>
+          </div>
+          <div class="row">
+            <dt>signal</dt>
+            <dd><!--email_off--><a href="https://signal.me/#eu/xJRDoEpzDK7oYUtupctAwYX5Kn0uPt8JCGt6dLa_eSIWSAAMGj5FPaIr2OyC2cCq" rel="noreferrer">@esth.01</a><!--/email_off-->
+              <button class="copy" type="button" data-copy="@esth.01">copy</button></dd>
+          </div>
+          <div class="row">
+            <dt>pgp</dt>
+            <dd><span class="v">{{FP_SPACED}}</span><br>
+              <a href="esthetis.asc">esthetis.asc</a>
+              <button class="copy" type="button" data-copy="{{FP_HEX}}">copy</button></dd>
+          </div>
+        </dl>
+
+      </section>
+
+    </main>
+
+    <footer class="sig">
+      <p class="armor" aria-hidden="true">-----BEGIN PGP SIGNATURE-----</p>
+      <pre class="sigblock">{{SIG}}</pre>
+      <p class="armor" aria-hidden="true">-----END PGP SIGNATURE-----</p>
+      <p class="colophon">© 2026 Esthetis · esthetis.is · <a href="/privacy">Privacy</a><br>
+        No trackers, and your browser is never sent elsewhere for fonts or
+        anything else. The page works with JavaScript switched off. Cloudflare
+        sits in front of this site, and the <a href="/privacy">privacy page</a>
+        sets out what they see.</p>
+    </footer>
+
+  </div>
+</div>
+
+<script src="main.js?v=16" defer></script>
+</body>
+</html>

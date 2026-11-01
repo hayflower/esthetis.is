@@ -1,0 +1,11 @@
+# security.txt for esthetis.is — RFC 9116
+# If you have found a vulnerability in something I run or built, mail me.
+
+Contact: mailto:contact@esthetis.is
+Preferred-Languages: en
+Canonical: https://esthetis.is/.well-known/security.txt
+
+# Bump this before it lapses. An expired security.txt is worse than none.
+Expires: 2027-08-24T00:00:00.000Z
+
+Encryption: https://esthetis.is/esthetis.asc

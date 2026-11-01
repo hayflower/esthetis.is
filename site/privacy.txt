@@ -1,0 +1,112 @@
+PRIVACY
+
+What this site collects, and what sees you on the way here.
+
+Effective 2026-08-24 · Revised 2026-11-01
+
+01  IN YOUR BROWSER
+------------------------------------------------------------------------
+
+Nothing is collected. No cookies are set and no analytics run. Every
+file this page loads comes from this domain, the fonts included, so your
+browser is never told to go and fetch something from somewhere else.
+
+You can confirm that in your network tab, which is a stronger guarantee
+than this paragraph is. The page also works with JavaScript switched
+off.
+
+02  HOW THIS REACHES YOU
+------------------------------------------------------------------------
+
+This site sits behind a Cloudflare tunnel. Your request arrives at a
+Cloudflare edge server, which passes it down an outbound connection to
+the machine holding the files. The machine's address is published
+nowhere, which is the reason for the arrangement.
+
+You should know what that costs you. Cloudflare terminates the
+encryption, so they see your IP address and every page you ask for, with
+timestamps. They can read the traffic in both directions. That is true
+of every site behind a CDN, and it is worth stating plainly rather than
+leaving you to find it with dig.
+
+What Cloudflare does with that is governed by them and not by me. Their
+policy is at cloudflare.com/privacypolicy.
+
+If you would rather not have Cloudflare in the path, reach me on Signal
+at @esth.01. That route does not touch this site or its mail.
+
+03  ON MY SERVER
+------------------------------------------------------------------------
+
+Because the tunnel sits in front, my server never learns your IP
+address. The connection it sees comes from Cloudflare, and the only
+place your real address appears is in a header I have chosen not to
+record.
+
+Access logging on my side is switched off. There is no log on my machine
+that could identify you, truncated or otherwise, so there is nothing on
+my side to leak. Cloudflare keeps their own logs on their own terms.
+
+04  DO NOT TRACK
+------------------------------------------------------------------------
+
+Some browsers send a Do Not Track header. This site does not act on it,
+because there is nothing here for it to switch off. No tracking happens
+whether the header arrives or not.
+
+Nothing on this site follows you to another one. There are no embeds and
+no advertising code of any kind. Cloudflare's view of you is limited to
+the requests you make to this domain.
+
+05  IF YOU MAIL ME
+------------------------------------------------------------------------
+
+When you email me I have your address and whatever you chose to put in
+the message. That is ordinary, but it is worth being precise about where
+it goes.
+
+Mail to this domain is forwarded by Cloudflare Email Routing and
+delivered to a mailbox elsewhere. Either can read anything that arrives
+unencrypted, exactly as with any hosted mail.
+
+That is the same company that fronts this site, so Cloudflare is in a
+position to see both your visit and your message. I would rather write
+that down than let you assume the two paths are separate.
+
+If that matters for what you want to discuss, encrypt it. PGP keeps the
+contents from the forwarder and the mailbox, though not from me once I
+decrypt it. Signal avoids the mail path altogether.
+
+I keep correspondence for as long as an engagement needs it and a while
+afterwards for my own records. Ask me to delete yours and I will.
+
+  forwards to Cloudflare Email Routing
+
+06  YOUR CHOICES
+------------------------------------------------------------------------
+
+Mail me and ask what I hold about you. Ask me to correct it or delete it
+and I will do that, and I will tell you when it is done.
+
+The CCPA sets revenue and volume thresholds that a practice this size
+does not come close to, so it does not formally apply to me. I intend to
+honour requests as though it did. Nothing here is sold or shared for
+advertising, which is the thing that statute mostly exists to govern.
+
+If you are in the UK or the EU and the GDPR applies to your dealings
+with me, the same applies. Ask, and you get an answer rather than a
+form.
+
+07  CHANGES
+------------------------------------------------------------------------
+
+The revision date at the top of this page changes whenever the text
+does. If something material changes I will say what changed rather than
+quietly swapping the wording.
+
+  contact     contact@esthetis.is
+  signal      @esth.01
+  responsible Esthetis
+
+------------------------------------------------------------------------
+https://esthetis.is/privacy  ·  Signed with 897D 3FF8 ... EE1B AE66

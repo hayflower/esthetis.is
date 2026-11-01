@@ -1,0 +1,508 @@
+/* Esthetis — esthetis.is
+   Hand-written. No framework, no build step, no external requests.
+   The page is a clearsigned plaintext document: one monospace face,
+   a real column measure, and colour used only to mean something. */
+
+/* ---------- Font (self-hosted) ---------- */
+
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("fonts/anonymous-pro-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("fonts/anonymous-pro-700.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Anonymous Pro";
+  src: url("fonts/anonymous-pro-400i.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  --bg: #0b0c0e;
+  --fg: #dcded9;          /* 14.4:1 */
+  --dim: #9aa0a0;         /*  7.4:1 — secondary text */
+  --furniture: #7a8085;   /*  4.7:1 — armor lines, colophon */
+  --live: #8fb6d1;        /*  9.1:1 — verified, computed, keyed */
+  --pending: #cf9b6a;     /*  8.0:1 — awaiting a real value */
+  --rule: #22252a;
+  --rule-soft: #191c20;
+
+  --mono: "Anonymous Pro", ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --measure: 72ch;
+  --gutter: clamp(1.15rem, 4vw, 2.5rem);
+}
+
+/* ---------- Base ---------- */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 1.5rem; }
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--mono);
+  font-size: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  padding: clamp(2rem, 6vh, 4rem) var(--gutter) clamp(3rem, 9vh, 5rem);
+}
+
+::selection {
+  background: var(--live);
+  color: var(--bg);
+}
+
+a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-decoration-color: var(--furniture);
+  text-underline-offset: 0.2em;
+  transition: color 140ms linear, text-decoration-color 140ms linear;
+}
+
+a:hover {
+  color: var(--live);
+  text-decoration-color: var(--live);
+}
+
+:focus-visible {
+  outline: 2px solid var(--live);
+  outline-offset: 2px;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -3rem;
+  background: var(--fg);
+  color: var(--bg);
+  padding: 0.35rem 0.75rem;
+  text-decoration: none;
+  transition: top 140ms linear;
+}
+
+.skip:focus-visible { top: 0.6rem; }
+
+/* ---------- Page frame: index rail + document ---------- */
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, var(--measure));
+  justify-content: center;
+}
+
+.doc { min-width: 0; }
+
+.index { display: none; }
+
+@media (min-width: 68rem) {
+  .page {
+    grid-template-columns: 12rem minmax(0, var(--measure));
+    gap: 0 4rem;
+  }
+
+  .index {
+    display: block;
+    position: sticky;
+    top: clamp(2rem, 6vh, 4rem);
+    align-self: start;
+    font-size: 0.875em;
+  }
+}
+
+.index-h {
+  color: var(--furniture);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.index ol {
+  list-style: none;
+  counter-reset: idx;
+}
+
+.index li { counter-increment: idx; }
+
+.index a {
+  display: block;
+  padding: 0.28rem 0;
+  color: var(--dim);
+  text-decoration: none;
+}
+
+/* The index is a document contents list, so the ordinal is wayfinding.
+   Scoped to the list: links outside it (the back link) are not sections. */
+.index ol a::before {
+  content: counter(idx, decimal-leading-zero) "  ";
+  color: var(--rule);
+  transition: color 140ms linear;
+}
+
+.index a:hover { color: var(--fg); }
+
+.index a[aria-current="true"] { color: var(--live); }
+
+.index a[aria-current="true"]::before { color: var(--live); }
+
+.index-back {
+  margin-top: 1.25rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--rule);
+}
+
+.index-back a {
+  color: var(--furniture);
+  text-decoration: none;
+}
+
+.index-back a:hover { color: var(--fg); }
+
+/* ---------- Armor: the document's structural furniture ---------- */
+
+.armor,
+.armor-meta {
+  color: var(--furniture);
+  font-size: clamp(0.75rem, 0.6rem + 0.7vw, 0.9375rem);
+  white-space: nowrap;
+  overflow: hidden;
+  user-select: none;
+}
+
+.armor-meta { margin-bottom: clamp(2.25rem, 6vh, 3.5rem); }
+
+/* ---------- Head ---------- */
+
+h1 {
+  font-size: clamp(1.875rem, 1.1rem + 3.6vw, 3.25rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+
+.scope {
+  margin-top: 0.85rem;
+  font-size: 1.0625em;
+  color: var(--fg);
+  text-wrap: pretty;
+}
+
+.avail {
+  margin-top: 0.9rem;
+  font-size: 0.875em;
+  color: var(--furniture);
+}
+
+/* A dated document reads as maintained. */
+.rev { color: var(--dim); }
+
+/* A quiet acknowledgement of something absent. Distinct from --pending, which
+   shouts; a page carrying several shouts reads as unfinished rather than candid. */
+.soft { color: var(--dim); }
+
+/* ---------- Identity: computed randomart beside its fingerprint ---------- */
+
+.ident {
+  display: block;
+  margin: clamp(2.25rem, 6vh, 3.5rem) 0;
+  padding: clamp(1.25rem, 3vw, 1.75rem) 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.art {
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 0.5rem + 0.9vw, 0.875rem);
+  line-height: 1.35;
+  color: var(--live);
+  white-space: pre;
+  user-select: none;
+}
+
+/* Art and fingerprint pair up; the verify command spans the full measure
+   below, since at 58 characters it is too wide to share the row. */
+.ident-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 3rem);
+  align-items: flex-start;
+}
+
+.ident-meta {
+  min-width: 0;
+  font-size: 0.9375em;
+}
+
+.k { color: var(--dim); }
+
+.v { color: var(--fg); word-break: break-all; }
+
+.verify { margin-top: 1.1rem; color: var(--dim); }
+
+.cmd code {
+  font: inherit;
+  color: var(--live);
+  overflow-wrap: anywhere;
+}
+
+.cmd code::before {
+  content: "$ ";
+  color: var(--furniture);
+}
+
+/* ---------- Sections ---------- */
+
+/* On the index page a full-width .ident block separates head from body.
+   Pages without one (privacy) need that air restored. */
+.head + main { margin-top: clamp(2.25rem, 6vh, 3.5rem); }
+
+main { counter-reset: sec; }
+
+main > section { counter-increment: sec; }
+
+main section + section { margin-top: clamp(2.75rem, 7vh, 4rem); }
+
+h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5ch;
+  font-size: 1em;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Section ordinals match the contents rail, so a reader can move between the
+   index and the body without re-reading either. Wayfinding, not ornament. */
+h2::before {
+  content: counter(sec, decimal-leading-zero);
+  color: var(--furniture);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+main p { text-wrap: pretty; }
+
+main > section > p + p { margin-top: 1.1rem; }
+
+.hint {
+  margin-top: 0.6rem;
+  color: var(--dim);
+  font-size: 0.9375em;
+}
+
+/* ---------- Services ---------- */
+
+.svc + .svc {
+  margin-top: 2.25rem;
+  padding-top: 2.25rem;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.svc h3 {
+  font-size: 1em;
+  font-weight: 700;
+  color: var(--live);
+  margin-bottom: 0.7rem;
+}
+
+.svc > p { color: var(--fg); }
+
+/* ---------- Spec rows: aligned like plaintext, but reflowing ---------- */
+
+.spec { margin-top: 1.1rem; }
+
+.row {
+  display: grid;
+  grid-template-columns: 9ch minmax(0, 1fr);
+  gap: 0 1.5ch;
+  align-items: baseline;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.spec.wide .row { grid-template-columns: 11ch minmax(0, 1fr); }
+
+.row dt { color: var(--dim); }
+
+.row dd { color: var(--dim); }
+
+.spec.wide .row dd,
+.channels .row dd { color: var(--fg); }
+
+.pending,
+.row dd.pending { color: var(--pending); }
+
+/* ---------- Process ---------- */
+
+.steps {
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 4ch minmax(0, 1fr);
+  gap: 0 1.5ch;
+  padding: 0.85rem 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.steps li::before {
+  content: counter(step, decimal-leading-zero);
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--live);
+}
+
+/* Both the heading and the prose sit in the text column; without this the
+   paragraph falls into the 4ch ordinal column and sets one word per line. */
+.steps h3,
+.steps p { grid-column: 2; }
+
+.steps h3 {
+  font-size: 1em;
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.steps p { color: var(--dim); }
+
+/* ---------- Fit ---------- */
+
+.fit-cols {
+  display: grid;
+  gap: 2rem;
+}
+
+@media (min-width: 46rem) {
+  .fit-cols { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+
+.fit-col h3 {
+  font-size: 0.875em;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 0.9rem;
+}
+
+.fit-list {
+  list-style: none;
+  color: var(--dim);
+}
+
+/* Hanging indent: the marker sits in a 4ch well and wrapped lines clear it.
+   The well is one character wider than "[+]" so the glyph never touches text. */
+.fit-list li {
+  padding: 0.4rem 0 0.4rem 4ch;
+  text-indent: -4ch;
+}
+
+.fit-list li::before { width: 4ch; display: inline-block; text-indent: 0; }
+
+.fit-list.good li::before { content: "[+]"; color: var(--live); }
+
+.fit-list.bad li::before { content: "[-]"; color: var(--furniture); }
+
+/* ---------- Contact ---------- */
+
+.channels { margin-top: 1.4rem; }
+
+.copy {
+  font: inherit;
+  font-size: 0.875em;
+  color: var(--dim);
+  background: none;
+  border: 1px solid var(--rule);
+  padding: 0 0.5ch;
+  margin-left: 1ch;
+  cursor: pointer;
+  transition: color 140ms linear, border-color 140ms linear;
+}
+
+.copy:hover,
+.copy[data-done] {
+  color: var(--live);
+  border-color: var(--live);
+}
+
+/* Shown only once main.js confirms the clipboard API exists */
+.copy { display: none; }
+.js-clipboard .copy { display: inline-block; }
+
+/* ---------- Signature ---------- */
+
+.sig {
+  margin-top: clamp(3rem, 8vh, 4.5rem);
+  padding-top: clamp(1.5rem, 4vh, 2.25rem);
+  border-top: 1px solid var(--rule);
+}
+
+/* Base64 armour is data. It wraps rather than scrolls, at a size that keeps
+   it subordinate to the prose above it. */
+.sigblock {
+  font-family: var(--mono);
+  font-size: clamp(0.6875rem, 0.55rem + 0.5vw, 0.8125rem);
+  line-height: 1.5;
+  color: var(--dim);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  padding: 0.6rem 0;
+  user-select: all;
+}
+
+.sig-state {
+  color: var(--dim);
+  padding: 0.85rem 0;
+}
+
+.colophon {
+  margin-top: clamp(2rem, 5vh, 2.75rem);
+  color: var(--furniture);
+  font-size: 0.875em;
+  text-wrap: pretty;
+}
+
+/* ---------- Narrow ---------- */
+
+@media (max-width: 34rem) {
+  .ident-row { flex-direction: column; gap: 1.5rem; }
+
+  .row {
+    grid-template-columns: 1fr;
+    gap: 0.15rem 0;
+  }
+
+  .steps li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem 0;
+  }
+
+  /* Single column: everything stacks, so release the column placement. */
+  .steps li::before,
+  .steps h3,
+  .steps p { grid-column: 1; }
+
+  .steps li::before { font-size: 0.875em; }
+}

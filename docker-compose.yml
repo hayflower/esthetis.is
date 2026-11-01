@@ -1,0 +1,29 @@
+services:
+  site:
+    image: nginx:alpine
+    container_name: esthetis-site
+    restart: unless-stopped
+    volumes:
+      - ./site:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    ports:
+      - "127.0.0.1:18080:80"
+    networks:
+      - esthetis
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: esthetis-tunnel
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --config /home/nonroot/.cloudflared/config.yml run
+    volumes:
+      - ./cf:/home/nonroot/.cloudflared:ro
+    depends_on:
+      - site
+    networks:
+      - esthetis
+
+networks:
+  esthetis:
+    name: esthetis
+    external: true

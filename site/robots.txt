@@ -1,0 +1,4 @@
+# Cloudflare prepends a managed block to this file, including its own
+# "User-agent: *" group. A second group here would be ignored by some parsers,
+# so this file carries only the sitemap reference, which is group-independent.
+Sitemap: https://esthetis.is/sitemap.xml
