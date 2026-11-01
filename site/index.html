@@ -148,8 +148,9 @@
         </article>
 
         <article class="svc">
-          <h3>Insecure key generation found in review</h3>
-          <p>During a security review, I found that a client's production software was generating private keys from a random source not designed for cryptography, the result of a fallback that failed silently. I recommended making key generation fail closed, adding automated checks so the fault couldn't return unnoticed, and rotating every affected key, and I advised on how to notify affected users. The client implemented the fixes.</p>
+          <h3>Silent fallback in key generation</h3>
+          <p>During a security review, I traced the client's key generation path and found that keys created in production were not coming from a cryptographically secure source. The entropy module tested for a secure random API once, at load time, and if it was missing fell back without warning to the runtime's general-purpose generator. A refactor had moved the import of the shim that provides that API below the entropy module, so in affected builds the check always ran first and every key took the fallback.</p>
+          <p>That generator isn't built for cryptography and its internal state can be recovered from its output, so every key from those builds had to be treated as guessable. I recommended removing the fallback so key generation fails closed, adding a startup self-test and a build-time check on import order, and forcing rotation of affected keys, with affected users contacted directly before any public statement. The client implemented the fixes.</p>
         </article>
 
       </section>
@@ -294,10 +295,10 @@
 
     <footer class="sig">
       <p class="armor" aria-hidden="true">-----BEGIN PGP SIGNATURE-----</p>
-      <pre class="sigblock">iHUEARYKAB0WIQSJfT/42gbjH48wj4iI0NzG7huuZgUCaubydwAKCRCI0NzG7huu
-Zu58AQD7fah3cxsDXDHZuYRULW/qL6Du+Cy4qNymIQQB1CagtwEAvYsuroOhV9JM
-hbE9PNIuYR2hyjKpio0nMa5w+PWuvg8=
-=m5fY</pre>
+      <pre class="sigblock">iHUEARYKAB0WIQSJfT/42gbjH48wj4iI0NzG7huuZgUCaubywQAKCRCI0NzG7huu
+ZvhKAP9kE95vIxPgO6FhAn83HN59RTgeyHTGss7r8bCW+JYSNwD+N6POt2uXegXd
++GwP6G35JlCpajQEuKT0PBVKdMRUzgU=
+=COuM</pre>
       <p class="armor" aria-hidden="true">-----END PGP SIGNATURE-----</p>
       <p class="colophon">© 2026 Blaise Bellew · Esthetis · esthetis.is · <a href="/privacy">Privacy</a><br>
         No trackers, and your browser is never sent elsewhere for fonts or
