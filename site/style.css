@@ -260,6 +260,8 @@ h1 {
   overflow-wrap: anywhere;
 }
 
+.cmd + .cmd { margin-top: 0.25rem; }
+
 .cmd code::before {
   content: "$ ";
   color: var(--furniture);

@@ -19,16 +19,19 @@ class Node:
     def cls(self):
         return self.attrs.get("class", "").split()
 
-    def text(self):
+    def text(self, lines=False):
         out = []
         for k in self.kids:
             if isinstance(k, str):
                 out.append(k)
             elif k.tag == "br":
-                out.append(" ")
+                out.append("\n" if lines else " ")
             elif k.tag not in SKIP:
-                out.append(k.text())
-        return " ".join("".join(out).split())
+                out.append(k.text(lines))
+        text = "".join(out)
+        if lines:
+            return "\n".join(" ".join(l.split()) for l in text.split("\n") if l.strip())
+        return " ".join(text.split())
 
     def find(self, tag=None, cls=None):
         for k in self.kids:
@@ -77,8 +80,10 @@ def wrap(text, indent="", hang=None):
 def rows(dl, key_width=12, indent="  "):
     out = []
     for row in dl.find("div", "row"):
-        dt, dd = next(row.find("dt")).text(), next(row.find("dd")).text()
-        out.append(wrap(dd, indent + dt.ljust(key_width), indent + " " * key_width))
+        dt = next(row.find("dt")).text()
+        lead, rest = indent + dt.ljust(key_width), indent + " " * key_width
+        for i, line in enumerate(next(row.find("dd")).text(lines=True).split("\n")):
+            out.append(wrap(line, lead if i == 0 else rest, rest))
     return out
 
 

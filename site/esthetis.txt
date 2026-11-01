@@ -74,11 +74,16 @@ front-end/
 
 Client names and identifying details are withheld under NDA.
 
-Cloud to self-managed servers
+Migrations and handovers
   A payments startup ran its production system on AWS. Working alongside
   their two developers, I migrated it to self-managed servers. Hosting
   costs came down by roughly half, and the team took over the new setup
   with backups in place and documentation for running it.
+
+  On another engagement I took over systems that had been built and run
+  without documentation, worked out what they did and how they fit
+  together, and left the client with runbooks and architecture documents
+  for all of it.
 
 MFA and device management for an eight-person team
   An eight-person team needed MFA and managed devices. I rolled out MFA
@@ -86,23 +91,14 @@ MFA and device management for an eight-person team
   credentials into Bitwarden. The team ended up with MFA in place and
   shared passwords kept in one managed vault.
 
-Key-generation flaw in a payment system
-  While reviewing a stored-value payment system, I found that several
-  production releases of its mobile app generated private keys without a
-  cryptographically secure source. A refactor had moved the polyfill
-  that supplies the secure random API below the module that checked for
-  it, and that module silently fell back to the runtime's
-  general-purpose generator, whose state can be recovered from its
-  output. I recommended making key generation fail closed, adding a
-  startup self-test and a build-time check on import order, and forcing
-  affected accounts to move funds to keys generated on a fixed build.
-  The client implemented all of it, and I advised on notifying affected
-  users before any public statement.
-
-Taking over undocumented systems
-  A client's systems had been built and run without documentation. I
-  worked out what they did and how they fit together, and left the
-  client with runbooks and architecture documents for all of it.
+Insecure key generation found in review
+  During a security review, I found that a client's production software
+  was generating private keys from a random source not designed for
+  cryptography, the result of a fallback that failed silently. I
+  recommended making key generation fail closed, adding automated checks
+  so the fault couldn't return unnoticed, and rotating every affected
+  key, and I advised on how to notify affected users. The client
+  implemented the fixes.
 
 04  NOTES
 ------------------------------------------------------------------------
@@ -220,7 +216,13 @@ with. If there's a deadline, say so.
   mail        contact@esthetis.is
   signal      @esth.01
   pgp         897D 3FF8 DA06 E31F 8F30 8F88 88D0 DCC6 EE1B AE66
-              esthetis.asc · this page, signed: esthetis.txt.asc
+              esthetis.asc · signed copy of this page: esthetis.txt.asc
+
+To check the signed copy:
+
+curl -s https://esthetis.is/esthetis.asc | gpg --import
+
+curl -s https://esthetis.is/esthetis.txt.asc | gpg --verify
 
 ------------------------------------------------------------------------
 https://esthetis.is  ·  Signed with 897D 3FF8 ... EE1B AE66
